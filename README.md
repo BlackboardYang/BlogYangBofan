@@ -1,5 +1,6 @@
 # BlogYangBofan
 FirstBlogDesign
-- Main Page: 使用BootStrap创建主页的大纲80%，正在调试弹出边栏导航
-- Login：0
-- Register：0
+- 浏览器小图标生成
+- Main Page: 使用BootStrap创建主页基础板块，框架完成80%，基础功能完成
+- Login：基础功能完成
+- Register：基础功能完成
