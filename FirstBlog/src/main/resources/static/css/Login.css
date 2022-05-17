@@ -21,18 +21,6 @@ body {
   z-index: 2;
 }
 
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -77,3 +65,46 @@ body {
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
 }
+
+/* form输入栏 */
+.form-control{
+  background-color: #DAE5D0;
+  border: none;
+  border-radius: 50px;
+}
+.input-group-text{
+  background-color: #DAE5D0;
+  border: none;
+  border-radius: 50px;
+}
+.form-select{
+  background-color: #DAE5D0;
+  border: none;
+  border-radius: 50px;
+}
+.form-select-sm{
+  background-color: #DAE5D0;
+  border: none;
+  border-radius: 50px;
+}
+
+.btn-primary{
+  background-color: #4B6587;
+  border: none;
+  border-radius: 50px
+}
+
+a {　
+  color:red;
+}
+  
+a:hover {
+  color:red;
+    }
+  
+a:visited {
+  color:#0000ff;
+  }
+
+
+
