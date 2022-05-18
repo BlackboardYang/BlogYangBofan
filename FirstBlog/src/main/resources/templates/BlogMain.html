@@ -14,39 +14,8 @@
 	rel="stylesheet">
 <link href="../static/css/blog.css" rel="stylesheet">
 <link rel="icon"  href="../static/img/logo_web.png" sizes="50x50">
-<script>
-// 回到顶上ButtonScript
-	let topButton = document.getElementById("btn-back-to-top");
+<script src="../static/JavaScript/BlogScript.js"></script>
 
-	window.onscroll = function() {
-		scrollFunction();
-	};
-
-	function scrollFunction() {
-		if (document.body.scrollTop > 20
-				|| document.documentElement.scrollTop > 20) {
-			topButton.style.display = "block";
-		} else {
-			topButton.style.display = "none";
-		}
-	}
-	topButton.addEventListener("click", backToTop);
-
-	function backToTop() {
-		document.body.scrollTop = 0;
-		document.documentElement.scrollTop = 0;
-	}
-
-// sidebarScript
-(() => {
-  'use strict'
-  const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-  tooltipTriggerList.forEach(tooltipTriggerEl => {
-    new bootstrap.Tooltip(tooltipTriggerEl)
-  })
-})()
-	
-</script>
 
 <title>YangBofanMyFirstBlog</title>
 

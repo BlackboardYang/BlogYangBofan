@@ -12,6 +12,10 @@ body {
   font-family: "Playfair Display", Georgia, "Times New Roman", serif;
 }
 
+code{
+  background-color: #1A3C40;
+}
+
 .form-signin {
   max-width: 700px;
   padding: 15px;
@@ -65,6 +69,7 @@ body {
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
 }
+
 
 /* form输入栏 */
 .form-control{
