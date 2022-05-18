@@ -1,4 +1,4 @@
-/* stylelint-disable selector-list-comma-newline-after */
+
 .bd-placeholder-img {
 	font-size: 1.125rem;
 	text-anchor: middle;
@@ -236,3 +236,5 @@ body {
   .link-dark:hover, .link-dark:focus {
 	color: #1a1e21 !important;
   }
+
+  

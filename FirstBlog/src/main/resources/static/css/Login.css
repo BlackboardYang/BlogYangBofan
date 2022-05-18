@@ -13,7 +13,7 @@ body {
 }
 
 .form-signin {
-  max-width: 330px;
+  max-width: 700px;
   padding: 15px;
 }
 
@@ -70,40 +70,60 @@ body {
 .form-control{
   background-color: #DAE5D0;
   border: none;
-  border-radius: 50px;
+  border-radius: 10px;
 }
 .input-group-text{
   background-color: #DAE5D0;
   border: none;
-  border-radius: 50px;
+  border-radius: 10px;
+}
+.smform{
+  background-color: #DAE5D0;
+  border: none;
+  border-radius: 10px;
 }
 .form-select{
   background-color: #DAE5D0;
   border: none;
-  border-radius: 50px;
+  border-radius: 20px;
 }
 .form-select-sm{
   background-color: #DAE5D0;
   border: none;
-  border-radius: 50px;
+  border-radius: 20px;
 }
 
+/* label */
+.formlabel{
+  color: #1D5C63;
+  text-align: left;
+  margin: auto;
+}
+
+
+/* button */
 .btn-primary{
   background-color: #4B6587;
   border: none;
-  border-radius: 50px
+  border-radius: 20px;
+  max-width: 300px;
+}
+.btn-primary:hover{
+  background-color: #487E95;
+  border: none;
+  border-radius: 20px
 }
 
-a {　
-  color:red;
+a:active {
+  color:#295939;
 }
   
 a:hover {
-  color:red;
+  color:#4B6587;
     }
   
 a:visited {
-  color:#0000ff;
+  color:#6F4C5B;
   }
 
 
