@@ -100,7 +100,7 @@ paths:
 
     post:
       tags:
-        - UserStatus
+        - BlogContents
       description: '接收用户对博客的评论'
       operationId: comments
       requestBody:
@@ -135,9 +135,9 @@ paths:
                 $ref: "#/components/schemas/PostHtml"
     post:
       tags:
-        - UserStatus
-      description: '接收用户对博客的评论'
-      operationId: comments
+        - BlogContents
+      description: '接收用户编辑的博客内容'
+      operationId: post
       requestBody:
         required: true
         content:
@@ -196,17 +196,16 @@ components:
     BlogMainHtml:
       type: "string"
       properties:
-        Username:
+        username:
           type: "string"
-        Date:
+        date:
           type: "string"
-        Title:
+        title:
           type: "string"
-        Tag:
+        tag:
           type: "string"
-        Body:
+        body:
           type: "string"
-
     BlogMain:
       type: "object"
       properties:
