@@ -1,0 +1,56 @@
+openapi: '3.0.2'
+info:
+  title: Project YangBlog
+  description: A blog project of Yang Bofan
+  version: '1.0'
+servers:
+  - url: https://localhost:8080
+paths:
+  /Signin:
+    get:
+      tags:
+        - UserStatus
+      description: '返回用户登陆界面'
+      operationId: getSigninView
+      responses:
+        '200':
+          description: OK
+          content:
+            text/html:    
+              schema:
+                $ref: "#/components/schemas/Login"
+    post:
+      tags:
+        - UserStatus
+      description: '接受用户登陆信息'
+      operationId: signin
+      requestBody:
+        required: true
+        content:
+          text/json:
+            schema:
+              type: "object"
+              properties:
+                email:
+                  type: "string"
+                password:
+                  type: "string"
+      responses:
+        '200':
+          description: OK
+          content:
+            text/html:    
+              schema:
+                $ref: "#/components/schemas/Login"
+
+components:
+  schemas:
+    LoginHtml:
+      type: "string"
+    Login:
+      type: "object"
+      properties:
+        username:
+          type: "string"
+        view:
+          type: "string"
