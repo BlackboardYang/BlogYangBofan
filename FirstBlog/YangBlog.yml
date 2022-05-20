@@ -6,11 +6,14 @@ info:
 servers:
   - url: https://localhost:8080
 paths:
+
   /Signin:
+
     get:
+      summary: '显示登陆界面'
       tags:
-        - UserStatus
-      description: '返回用户登陆界面'
+        - Class UserStatus
+      description: '使用view返回html登陆界面'
       operationId: getSigninView
       responses:
         '200':
@@ -19,35 +22,39 @@ paths:
             text/html:    
               schema:
                 $ref: "#/components/schemas/SigninHtml"
+        
     post:
+      summary: '接收登陆信息'
       tags:
-        - UserStatus
+        - Class UserStatus
       description: '接收用户登陆信息'
-      operationId: signin
+      operationId: Signin
       requestBody:
         required: true
         content:
           text/json:
             schema:
-              type: "object"
-              properties:
-                username:
-                  type: "string"
-                password:
-                  type: "string"
+              $ref: "#/components/schemas/Signin"
       responses:
         '200':
-          description: OK
+          description: 数据匹配，登录成功
           content:
             text/html:    
               schema:
-                $ref: "#/components/schemas/Signin"
+                $ref: "#/components/schemas/SigninHtml"
+        '201':
+          description: 账户信息与数据库不符，登陆失败
+          content:
+            text/html:    
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
 
   /Register:
     get:
       tags:
-        - UserStatus
-      description: '返回用户注册界面'
+        - Class UserStatus
+      description: '使用view返回html注册界面'
+      summary: '显示新用户注册界面'
       operationId: getRegisterView
       responses:
         '200':
@@ -58,38 +65,40 @@ paths:
                 $ref: "#/components/schemas/RegisterHtml"
     post:
       tags:
-        - UserStatus
+        - Class UserStatus
       description: '接收用户注册信息'
+      summary: '接收用户注册信息'
       operationId: Register
+      requestBody:
+        required: true
+        content:
+          text/html:
+            schema:
+             $ref: "#/components/schemas/RegisterHtml"
+              
+      responses:
+        '200':
+          description: OK
+          content:
+            text/json:    
+              schema:
+                $ref: "#/components/schemas/UserInformation"
+
+  /BlogMain:
+    get:
+      tags:
+        - Class BlogContents
+      description: '使用view返回html文章界面'
+      summary: '返回博客文章界面'
+      operationId: getBlogMainView
       requestBody:
         required: true
         content:
           text/json:
             schema:
-              type: "object"
-              properties:
-                username:
+              $ref: "#/components/schemas/BlogBody"
+              comments:
                   type: "string"
-                email:
-                  type: "string"
-                phoneNumber:
-                  type: "string"
-                password:
-                  type: "string"
-      responses:
-        '200':
-          description: OK
-          content:
-            text/html:    
-              schema:
-                $ref: "#/components/schemas/Register"
-
-  /BlogMain:
-    get:
-      tags:
-        - BlogContents
-      description: '返回博客文章界面'
-      operationId: getBlogMainView
       responses:
         '200':
           description: OK
@@ -97,33 +106,32 @@ paths:
             text/html:
               schema:
                 $ref: "#/components/schemas/BlogMainHtml"
-
+            
     post:
       tags:
-        - BlogContents
-      description: '接收用户对博客的评论'
+        - Class BlogContents
+      description: '用于接收用户对博客的评论内容'
+      summary: '接收博客评论'
       operationId: comments
       requestBody:
-        required: true
+        required: false
         content:
           text/json:
             schema:
-              type: "object"
-              properties:
-                comments:
-                  type: "string"
+              $ref: "#/components/schemas/Comments"
+              
       responses:
         '200':
           description: OK
           content:
             text/html:    
               schema:
-                $ref: "#/components/schemas/BlogMain"
+                $ref: "#/components/schemas/PostHtml"
 
   /Post:
     get:
       tags:
-        - BlogContents
+        - Class BlogContents
       description: '创建新博客文章界面'
       operationId: getPostView
       responses:
@@ -135,66 +143,53 @@ paths:
                 $ref: "#/components/schemas/PostHtml"
     post:
       tags:
-        - BlogContents
+        - Class BlogContents
       description: '接收用户编辑的博客内容'
       operationId: post
       requestBody:
         required: true
         content:
-          text/json:
-            schema:
-              type: "object"
-              properties:
-                Username:
-                  type: "string"
-                Date:
-                  type: "string"
-                Title:
-                  type: "string"
-                Tag:
-                  type: "string"
-                Body:
-                  type: "string"
-                view:
-                  type: "string"
+          text/html:    
+              schema:
+                $ref: "#/components/schemas/PostHtml"
       responses:
         '200':
           description: OK
           content:
-            text/html:    
+            text/json:    
               schema:
-                $ref: "#/components/schemas/Post"
+                $ref: "#/components/schemas/BlogBody"
 
 
 components:
   schemas:
-
-    SigninHtml:
-      type: "string"
-    Signin:
-      type: "object"
-      properties:
-        email:
-          type: "string"
-        view:
-          type: "string"
-
-    RegisterHtml:
-      type: "string"      
-    Register:
-      type: "object"
+    
+    UserInformation:
+      type: object
+      required:
+        - "username"
+        - "email"
+        - "phoneNumber"
+        - "password"
       properties:
         username:
           type: "string"
         email:
           type: "string"
         phoneNumber:
+          type: "integer"
+        password:
           type: "string"
         view:
           type: "string"
 
-    BlogMainHtml:
-      type: "string"
+    BlogBody:
+      type: object
+      required:
+        - "username"
+        - "date"
+        - "title"
+        - "body"
       properties:
         username:
           type: "string"
@@ -206,7 +201,35 @@ components:
           type: "string"
         body:
           type: "string"
-    BlogMain:
+        view:
+          type: "string"
+
+    Signin:
+      type: "object"
+      required:
+        - "email"
+        - "password"
+      properties:
+        email:
+          type: "string"
+        password:
+          type: "string"
+        view:
+          type: "string"
+    
+    SigninHtml:
+      type: "string"
+
+    RegisterHtml:
+      type: "string"   
+
+    PostHtml:
+      type: "string"     
+
+    BlogMainHtml:
+      type: "string"
+    
+    Comments:
       type: "object"
       properties:
         comments:
@@ -214,20 +237,14 @@ components:
         view:
           type: "string"
 
-    PostHtml:
-      type: "string"
-    Post:
-      type: "object"
+    ErrorMessage:
+      type: object
+      required:
+        - code
+        - message
       properties:
-        Username:
-          type: "string"
-        Date:
-          type: "string"
-        Title:
-          type: "string"
-        Tag:
-          type: "string"
-        Body:
-          type: "string"
-        view:
-          type: "string"
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
