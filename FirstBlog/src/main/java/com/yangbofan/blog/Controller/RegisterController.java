@@ -10,10 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yangbofan.blog.Model.UserStatus;
 import com.yangbofan.blog.Repository.UserStatusRepository;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Controller	
-@Slf4j
 public class RegisterController {
 	
 	@Autowired
@@ -23,17 +20,34 @@ public class RegisterController {
 	public String getRegisterView() {
 		return "register";
 	}
-
+				
 	@PostMapping("/register")
 	public ModelAndView register(//
 			@RequestParam("username") String username,
-			@RequestParam("email") String email,
+			@RequestParam("email1") String email1,
+			@RequestParam("email2") String email2,
 			@RequestParam("phone_number") int phoneNumber ,
-			@RequestParam("passoword")
+			@RequestParam("passoword") String password,
 			@RequestParam("password_again") String passwordAgain,
 			ModelAndView mv) {
 		
-		if (! password.equals())
+		UserStatus userStatus = UserStatus.builder()//
+				.username(username)
+				.email(email1 + email2)
+				.phoneNumber(phoneNumber)
+				.password(password)
+				.build();
+		userStatusRepository.save(userStatus);
+		
+		mv.addObject("username",username);
+		mv.addObject("email",username);
+		mv.addObject("phone_number", phoneNumber);
+		mv.addObject("username",username);
+		mv.addObject("password",password);
+		
+		mv.setViewName("RegisterSuccess");
+		return mv;
+		
 	}
 			
 }

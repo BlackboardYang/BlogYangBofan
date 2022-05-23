@@ -10,16 +10,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yangbofan.blog.Model.UserStatus;
 import com.yangbofan.blog.Repository.UserStatusRepository;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Controller	
-@Slf4j
-public class SignInController {
+public class SigninController {
 	@Autowired
 	private UserStatusRepository userStatusRepository;
 	
 	@GetMapping("/SignIn")
-	public String signIn() {
+	public String getSignInView() {
 		return "SignIn";
 	}
 
@@ -31,6 +28,7 @@ public class SignInController {
 			ModelAndView mv) {
 		
 		mv.addObject("email",email);
+		
 		UserStatus userStatus = userStatusRepository.findByEmail(email);
 		
 		if(userStatus != null && password.equals(userStatus.getPassword())) {
@@ -38,8 +36,6 @@ public class SignInController {
 		} else {
 			mv.setViewName("SignInFail");
 		}
-		
-		
 		return mv;
 	}
 

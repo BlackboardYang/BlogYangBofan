@@ -20,8 +20,8 @@ public class UserStatus {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	
-	private String email;
 	private String username;
+	private String email;
 	private int phoneNumber;
 	private String password;
 	
