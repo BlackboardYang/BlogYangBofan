@@ -14,33 +14,26 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller	
 @Slf4j
-public class SignInController {
+public class RegisterController {
+	
 	@Autowired
 	private UserStatusRepository userStatusRepository;
 	
-	@GetMapping("/SignIn")
-	public String signIn() {
-		return "SignIn";
+	@GetMapping("/register")
+	public String getRegisterView() {
+		return "register";
 	}
 
-	
-	@PostMapping("/SignIn")
-	public ModelAndView signin(//
-			@RequestParam("email") String email,//
-			@RequestParam("password") String password,//
+	@PostMapping("/register")
+	public ModelAndView register(//
+			@RequestParam("username") String username,
+			@RequestParam("email") String email,
+			@RequestParam("phone_number") int phoneNumber ,
+			@RequestParam("passoword")
+			@RequestParam("password_again") String passwordAgain,
 			ModelAndView mv) {
 		
-		mv.addObject("email",email);
-		UserStatus userStatus = userStatusRepository.findByEmail(email);
-		
-		if(userStatus != null && password.equals(userStatus.getPassword())) {
-			mv.setViewName("BlogMain");
-		} else {
-			mv.setViewName("SignInFail");
-		}
-		
-		
-		return mv;
+		if (! password.equals())
 	}
-
+			
 }
