@@ -1,9 +1,11 @@
 # BlogYangBofan
 FirstBlogDesign
-- 浏览器小图标生成
-- Main Page: 使用BootStrap创建主页基础板块，基础功能完成
+
+- Main page: 为配合后端正在重新调整，基础功能完成
+- Edit page: 为配合后端正在重新调整
 - Login：基础功能完成
 - Register：基础功能完成
 
-- 用户controller完成
-- 博客的发布controller完成
+- 正在调整博客显示页面
+- 正在调试form input的select+option功能
+
