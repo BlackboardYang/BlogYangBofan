@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+	crossorigin="anonymous">
+<link
+	href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap"
+	rel="stylesheet">
+<link th:href="@{/css/blog.css}" rel="stylesheet">
+<link rel="icon" th:href="@{/img/logo_web.png}" sizes="50x50">
+<script th:href="@{/JavaScript/BlogScript.js}"></script>
+<title>Post Page</title>
+
+</head>
+
+<body>
+	<div>
+		<!-- 顶部标题导航栏 -->
+		<!--顶部登陆标题container-->
+		<div class="container-fluid" style="background-color: #A0BCC2;">
+			<header class="blog-header lh-1 py-3">
+				<div
+					class="row flex-nowrap justify-content-between align-items-center">
+					<div class="col-4 pt-1">
+						<a href="/BlogMain.html"> <img class="img-fluid"
+							th:src="@{/img/logo_transparent.png}" style="max-width: 15%">
+						</a>
+					</div>
+					<div class="col-4 text-center">
+						<a class="blog-header-logo text-dark" data-bs-toggle="offcanvas"
+							href="/BlogMain.html">
+							<p class="fs-1">YangBlog</p>
+						</a>
+					</div>
+					<div class="col-4 d-flex justify-content-end align-items-center">
+						<!-- 注册用户按钮signin在这 -->
+						<a class="btn btn-sm btn-outline-secondary"
+							href="../templates/Post.html">Post <svg
+								xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                                <path
+									d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z">
+                                </path>
+                            </svg></a> <a class="btn btn-sm btn-outline-secondary"
+							href="../templates/Login.html" data-toggle="modal"
+							data-target="#loginModal">Sign in <svg
+								xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                <path
+									d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z">
+                                </path>
+                            </svg></a>
+					</div>
+				</div>
+			</header>
+		</div>
+
+		<!-- TopSticky导航栏 -->
+		<div class="container-fluid sticky-top mb-3"
+			style="background-color: #A0BCC2">
+			<ul class="nav nav-pills nav-fill">
+				<li class="nav-item"><button class="btn btn-light funcbtn"
+						type="button" data-bs-toggle="offcanvas"
+						data-bs-target="#offcanvasExample"
+						aria-controls="offcanvasExample">Menu</button></li>
+
+				<li class="nav-item"><a class="nav-link tab" href="#">Tag1</a></li>
+				<li class="nav-item"><a class="nav-link tab" href="#">Tab2</a></li>
+				<li class="nav-item"><a class="nav-link tab" href="#">Tab3</a></li>
+				<li class="nav-item"><a class="nav-link tab" href="#">Tab4</a></li>
+				<li class="nav-item"><a class="nav-link tab" href="#">Tab5</a></li>
+				<li class="nav-item">
+					<button onclick="backToTop()" type="button"
+						class="btn btn-light funcbtn" id="btn-back-to-top"
+						data-bs-toggle="button">Back To Top</button> <i
+					class="fas fa-arrow-up"></i>
+				</li>
+				<li class="nav-item"><a class="link-secondary" href="#"
+					aria-label="Search"><svg xmlns="http://www.w3.org/2000/svg"
+							width="20" height="20" fill="none" stroke="currentColor"
+							stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							class="mx-3" role="img" viewBox="0 0 24 24">
+                            <title>Search</title>
+                            <circle cx="10.5" cy="10.5" r="7.5" />
+                            <path d="M21 21l-5.2-5.2" />
+                        </svg> </a></li>
+
+			</ul>
+		</div>
+	</div>
+
+
+	<form action="/editor" method="post" th:object="${blog}">
+		<input type="hidden" name="username" th:value="${username}">
+		<h2 class="text-center mb-5">Post your blog</h2>
+		<div class="container-lg">
+			<div class="card mb-3">
+				<div class="card-body row g-5">
+					<div class="col">
+						<label for="title" class="form-label">
+							<p>First, you need to create a Creative Title:</p> <!-- title -->
+						</label> <input name="title" type="text" class="form-control" id="title"
+							placeholder="Enter Title here" th:value="*{title}">
+					</div>
+
+				</div>
+			</div>
+			<div class="card mb-3">
+				<div class="card-body row">
+					<div class="col">
+						<label for="tag" class="form-label">
+							<p>
+								And give us some keywords in order to find your great stuff!<br>
+								You can start your tag with #
+							</p> <!-- tag -->
+						</label> <input name="tag" type="text" class="form-control" id="postTag" th:value="*{tag}"
+							placeholder="#hashtag">
+					</div>
+				</div>
+			</div>
+			<div class="card mb-3">
+				<div class="card-body row mb-3">
+					<div class="col">
+						<label for="content" class="form-label">
+							<p>To edit your blog body, just simply type beneath:</p> <br>
+							<div class="card-body">
+								<div class="card row mb-1 text-muted">
+
+									<p>*You can put your code within tags
+										&lt;code&gt;and&lt;/code&gt;, like:
+									<p>you enter:</p>
+									<p>&lt;code&gt;your code&lt;/code&gt;</p>
+									<p>and you get:</p>
+
+									<code>your code</code>
+
+									</p>
+								</div>
+							</div>
+						</label>
+						<div class="col">
+							<label for="content" class="form-label">Blog body</label>
+							<textarea name="content" class="form-control" id="content"
+								rows="3" th:value="*{content}"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="col mb-2">
+					<button class="w-20 btn-lg btn btn-light" type="submit">Post</button>
+				</div>
+			</div>
+
+		</div>
+
+
+	</form>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+<title>Blog editor</title>
+
+<style type="text/css">
+</style>
+</head>
+
+
+<body style="background-color: #FFEEDD">
+	<h1 style="margin-left: 100px; text-align: left; color: #AAADDA">Blog
+		Editor</h1>
+
+	<div style="background-color: #BCA; margin: 50px; padding: 50px;">
+		<form action="/editor" method="post">
+		<input type="hidden" name="username" th:value="${username}">
+			<table>
+				<tr>
+					<td><label style="padding-right: 100px; color: #666" for="title">Blog title</label></td>
+					<td><input style="width: 500px; height: 30px;" type="text" id='title' name="title" placeholder='add a title'></td>
+				</tr>
+				<tr>
+					<td><label style="padding-right: 100px; color: #666" for="content">Blog content</label></td>
+					<td><textarea style="width: 500px; height: 300px;" id='content' name="content" placeholder='add contents'></textarea></td>
+				</tr>
+				<tr>
+					<td><input style="width: 100px; height: 70px;" type="submit" value="Go"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html> -->
